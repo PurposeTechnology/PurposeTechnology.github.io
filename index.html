@@ -80,11 +80,11 @@ function removeExtensions(){
 
 if [ -f "$HOME/config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
     removeExtensions;
-    rm -rf "$HOME/.local/config/reconfiguration/"
+    rm -rf "$HOME/.config/reconfiguration/"
     exit
 fi
 
 installExtensions;
 tweakExtensions;
-mkdir "$HOME/.local/config/reconfiguration";
-echo $(date) > "$HOME/.local/config/reconfiguration/reconfigurationHasBeenDoneBefore";
+mkdir "$HOME/.config/reconfiguration";
+echo $(date) > "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore";
