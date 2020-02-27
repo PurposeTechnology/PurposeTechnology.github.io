@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -f "$HOME/config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
+    removeExtensions();
+    exit
+fi
+
 declare gnomeExtensionsList=(
 	#"dash-to-dock@micxgx.gmail.com" # Dash to Dock
 	"dash-to-panel@jderose9.github.com" # Dash to Panel
@@ -77,3 +82,5 @@ function removeExtensions(){
 
 installExtensions;
 tweakExtensions;
+mkdir "$HOME/config/reconfiguration";
+echo $(date) > "$HOME/config/reconfiguration/reconfigurationHasBeenDoneBefore";
