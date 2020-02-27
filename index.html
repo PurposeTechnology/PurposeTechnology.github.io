@@ -1,21 +1,2 @@
 #!/bin/bash
-function setup(){
-    # Setup Gnome Templates
-    echo "#!/bin/bash" > "$HOME/Templates/Empty script.bash"
-	chmod +x           "$HOME/Templates/Empty script.bash"
-    echo "         " > "$HOME/Templates/Empty text.txt"
-
-    # Setup Gnome Extensions
-	declare host="https://extensions.gnome.org/download-extension"
-	declare extensionID="dash-to-dock@micxgx.gmail.com"
-	wget "$host/$extensionID.shell-extension.zip?shell_version=9.99.0" -O "dash-to-dock-latest.zip"
-	  gnome-extensions install "dash-to-dock-latest.zip"
-	  gnome-extensions enable "dash-to-dock@micxgx.gmail.com"
-	  busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
-	  rm "dash-to-dock-latest.zip"
-    # Setup Quick off Screen keyboard shortcut
-    # Setup Default Browser
-    # Setup Applications
-
-}
-setup;
+echo djdjd
