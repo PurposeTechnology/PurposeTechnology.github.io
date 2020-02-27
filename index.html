@@ -1,2 +1,79 @@
-shere
-echo djdjd
+#!/bin/bash
+
+declare gnomeExtensionsList=(
+	#"dash-to-dock@micxgx.gmail.com" # Dash to Dock
+	"dash-to-panel@jderose9.github.com" # Dash to Panel
+	"ding@rastersoft.com" # Desktop Icons NG - introduces a working Drag N Drop for Desktop Icons 
+
+)
+
+function installExtensions(){
+	declare host="https://extensions.gnome.org/download-extension"
+	for extensionUUID in "${gnomeExtensionsList[@]}"; do
+	  wget "$host/$extensionUUID.shell-extension.zip?shell_version=9.99.9" -O "$extensionUUID-latest.zip"
+	  gnome-extensions install "$extensionUUID-latest.zip"
+	  gnome-extensions enable "$extensionUUID"
+	  rm "$extensionUUID-latest.zip"
+	done
+	tweakExtensions;
+	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+}
+
+	function tweakExtensions(){
+		for extensionUUID in "${gnomeExtensionsList[@]}"; do
+			# Desktop NG Extension
+			if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
+				# Disable Original Desktop Icons, since Desktop Icons NG is better at Drag N Drop
+				gnome-extensions disable "desktop-icons@csoriano"
+			fi
+
+			# Dash to Panel Enhancements
+			#if [ "$extensionUUID" == "dash-to-panel@jderose9.github.com" ] ; then
+
+			# gschemes cannot be installed via Extensions alone. So there are no way to modify settings via command line
+			# unless we manually compile schemas via command line. 
+			# /org/gnome/shell/extensions/dash-to-panel/
+
+			#sudo cp /home/vaidas/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/ &&
+			#sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+
+			 gsettings set org.gnome.shell.extensions.dash-to-panel panel-size 46
+			 gsettings set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
+			 gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
+			 gsettings --schemadir "$home/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas" set org.gnome.shell.extensions.ding icon-size "small"
+
+			
+			#fi
+
+
+			# mkdir "/usr/share/gnome-shell/extensions/disabled" 
+			# sudo mv /usr/share/gnome-shell/extensions/* "/usr/share/gnome-shell/extensions/disabled"
+
+
+
+
+
+		done 
+	}
+
+function removeExtensions(){
+	for extensionUUID in "${gnomeExtensionsList[@]}"; do
+	  gnome-extensions uninstall "$extensionUUID";
+	done
+	cleanupExtensions;
+	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+}
+
+	function cleanupExtensions(){
+		# Dash to Dock Extension
+		# After Dash to Dock is uninstalled, Ubuntu dock is not re-enabled, we have to do that manually
+		gnome-extensions enable "ubuntu-dock@ubuntu.com";
+		
+		# Desktop NG Extension
+		# Re-enable since Desktop Icons NG is being uninstalled
+		gnome-extensions enable "desktop-icons@csoriano";
+
+	}
+
+installExtensions;
+tweakExtensions;
