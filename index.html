@@ -39,7 +39,7 @@ function installExtensions(){
 			#sudo cp /home/vaidas/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/ &&
 			#sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
-			 set dashToPanelSchemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
+			 declare dashToPanelSchemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
 			 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel panel-size 46
 			 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
 			 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
@@ -78,7 +78,7 @@ function removeExtensions(){
 
 	}
 
-if [ -f "$HOME/config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
+if [ -f "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
     removeExtensions;
     rm -rf "$HOME/.config/reconfiguration/"
     exit
