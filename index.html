@@ -39,10 +39,11 @@ function installExtensions(){
 			#sudo cp /home/vaidas/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/ &&
 			#sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
-			 gsettings set org.gnome.shell.extensions.dash-to-panel panel-size 46
-			 gsettings set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
-			 gsettings set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
-			 gsettings --schemadir "$home/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas" set org.gnome.shell.extensions.ding icon-size "small"
+			 set dashToPanelSchemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
+			 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel panel-size 46
+			 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
+			 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
+			 gsettings --schemadir "$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas" set org.gnome.shell.extensions.ding icon-size "small"
 
 			
 			#fi
