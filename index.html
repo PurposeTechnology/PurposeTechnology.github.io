@@ -78,7 +78,7 @@ function removeExtensions(){
 	}
 
 if [ -f "$HOME/config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
-    removeExtensions();
+    removeExtensions;
     rm -rf "$HOME/config/reconfiguration/"
     exit
 fi
