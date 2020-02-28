@@ -45,43 +45,43 @@ function installExtensions(){
 	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
 }
 
-	function tweakExtensions(){
-		for extensionUUID in "${gnomeExtensionsList[@]}"; do
-			# Desktop NG Extension
-			if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
-				# Disable Original Desktop Icons, since Desktop Icons NG is better at Drag N Drop
-				gnome-extensions disable "desktop-icons@csoriano"
-			fi
+function tweakExtensions(){
+	for extensionUUID in "${gnomeExtensionsList[@]}"; do
+		# Desktop NG Extension
+		if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
+			# Disable Original Desktop Icons, since Desktop Icons NG is better at Drag N Drop
+			gnome-extensions disable "desktop-icons@csoriano"
+		fi
 
-			# Dash to Panel Enhancements
-			#if [ "$extensionUUID" == "dash-to-panel@jderose9.github.com" ] ; then
+		# Dash to Panel Enhancements
+		#if [ "$extensionUUID" == "dash-to-panel@jderose9.github.com" ] ; then
 
-			# gschemes cannot be installed via Extensions alone. So there are no way to modify settings via command line
-			# unless we manually compile schemas via command line. 
-			# /org/gnome/shell/extensions/dash-to-panel/
+		# gschemes cannot be installed via Extensions alone. So there are no way to modify settings via command line
+		# unless we manually compile schemas via command line. 
+		# /org/gnome/shell/extensions/dash-to-panel/
 
-			#sudo cp /home/vaidas/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/ &&
-			#sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+		#sudo cp /home/vaidas/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/ &&
+		#sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
-			 declare dashToPanelSchemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
-			 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel panel-size 46
-			 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
-			 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
-			 gsettings --schemadir "$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas" set org.gnome.shell.extensions.ding icon-size "small"
-
-			
-			#fi
+		 declare dashToPanelSchemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
+		 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel panel-size 46
+		 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
+		 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
+		 gsettings --schemadir "$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas" set org.gnome.shell.extensions.ding icon-size "small"
 
 
-			# mkdir "/usr/share/gnome-shell/extensions/disabled" 
-			# sudo mv /usr/share/gnome-shell/extensions/* "/usr/share/gnome-shell/extensions/disabled"
+		#fi
 
 
+		# mkdir "/usr/share/gnome-shell/extensions/disabled" 
+		# sudo mv /usr/share/gnome-shell/extensions/* "/usr/share/gnome-shell/extensions/disabled"
 
 
 
-		done 
-	}
+
+
+	done 
+}
 
 function removeExtensions(){
 	for extensionUUID in "${gnomeExtensionsList[@]}"; do
