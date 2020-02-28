@@ -33,6 +33,7 @@ declare gnomeExtensionsList=(
 function installExtensions() {
 	declare host="https://extensions.gnome.org/download-extension"
 	for extensionUUID in "${gnomeExtensionsList[@]}"; do
+	
 		wget "$host/$extensionUUID.shell-extension.zip?shell_version=9.99.9" -O "$extensionUUID-latest.zip";
 		gnome-extensions install "$extensionUUID-latest.zip";
 		gnome-extensions enable "$extensionUUID";
