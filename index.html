@@ -48,9 +48,7 @@ function installExtensions() {
 }
 
 function tweakExtensions() {
-
 	for extensionUUID in "${gnomeExtensionsList[@]}"; do
-	
 	 # Desktop NG Extension Enhancements
 	 if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
 	  declare desktop_icons_ng_schemas="$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas";
