@@ -33,14 +33,14 @@ declare gnomeExtensionsList=(
 function installExtensions() {
 	declare host="https://extensions.gnome.org/download-extension"
 	for extensionUUID in "${gnomeExtensionsList[@]}"; do
-	  wget "$host/$extensionUUID.shell-extension.zip?shell_version=9.99.9" -O "$extensionUUID-latest.zip";
-	  gnome-extensions install "$extensionUUID-latest.zip";
-	  gnome-extensions enable "$extensionUUID";
-	  rm "$extensionUUID-latest.zip";
-	  if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
-		 # Disable Original Desktop Icons, since Desktop Icons NG is better at Drag N Drop
-		 gnome-extensions disable "desktop-icons@csoriano"
-	  fi
+		wget "$host/$extensionUUID.shell-extension.zip?shell_version=9.99.9" -O "$extensionUUID-latest.zip";
+		gnome-extensions install "$extensionUUID-latest.zip";
+		gnome-extensions enable "$extensionUUID";
+	  	rm "$extensionUUID-latest.zip";
+		if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
+			# Disable Original Desktop Icons, since Desktop Icons NG is better at Drag N Drop
+			gnome-extensions disable "desktop-icons@csoriano"
+	 	fi
 	done
 }
 
@@ -80,7 +80,7 @@ function tweakExtensions() {
 
 function removeExtensions() {
 	for extensionUUID in "${gnomeExtensionsList[@]}"; do
-	  gnome-extensions uninstall "$extensionUUID";
+		gnome-extensions uninstall "$extensionUUID";
 	done
 	cleanupExtensions;
 	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
@@ -109,9 +109,9 @@ fi
 
 # If the reconfiguration has been done before undo the changes to the system
 if [ -f "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
-    removeExtensions;
-    rm -rf "$HOME/.config/reconfiguration/"
-    exit
+	removeExtensions;
+	rm -rf "$HOME/.config/reconfiguration/"
+	exit
 fi
 
 # Normal Flow of this reconfiguration program/script.
