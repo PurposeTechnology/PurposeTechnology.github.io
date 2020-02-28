@@ -30,7 +30,7 @@ declare gnomeExtensionsList=(
 
 )
 
-function installExtensions(){
+function installExtensions() {
 	declare host="https://extensions.gnome.org/download-extension"
 	for extensionUUID in "${gnomeExtensionsList[@]}"; do
 	  wget "$host/$extensionUUID.shell-extension.zip?shell_version=9.99.9" -O "$extensionUUID-latest.zip";
@@ -45,7 +45,7 @@ function installExtensions(){
 	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
 }
 
-function tweakExtensions(){
+function tweakExtensions() {
 	for extensionUUID in "${gnomeExtensionsList[@]}"; do
 		# Desktop NG Extension
 		if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
@@ -88,7 +88,7 @@ function tweakExtensions(){
 	done 
 }
 
-function removeExtensions(){
+function removeExtensions() {
 	for extensionUUID in "${gnomeExtensionsList[@]}"; do
 	  gnome-extensions uninstall "$extensionUUID";
 	done
@@ -96,7 +96,7 @@ function removeExtensions(){
 	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
 }
 
-	function cleanupExtensions(){
+	function cleanupExtensions() {
 		# Dash to Dock Extension
 		# After Dash to Dock is uninstalled, Ubuntu dock is not re-enabled, we have to do that manually
 		gnome-extensions enable "ubuntu-dock@ubuntu.com";
