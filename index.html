@@ -19,6 +19,8 @@ function installExtensions(){
 	done
 	tweakExtensions;
 	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+	# Required for Desktop Icons NG to adjust the icons after switch from Ubuntu Dash to Dash to Panel. 
+	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
 }
 
 	function tweakExtensions(){
