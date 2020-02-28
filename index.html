@@ -78,12 +78,24 @@ function removeExtensions(){
 
 	}
 
+# This script requires gnome-extensions command line tool 
+# This command line tool is required to install Gnome Extensions 
+# The extensions won't be installed and schemes for these extensions - not found
+declare current_gnome_version=$(gnome-shell --version | cut -d ' ' -f3 | tr "." ",");
+declare gnome_extensions_introduced_in_version="3,34,1";
+if (( current_gnome_version < gnome_extensions_introduced_in-version )); then
+    echo Your Gnome Shell version is incompatible - too old.
+    echo gnome-extensions command line tool has not been introduced yet in your version of Gnome.
+fi
+
+# If the reconfiguration has been done before undo the changes to the system
 if [ -f "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
     removeExtensions;
     rm -rf "$HOME/.config/reconfiguration/"
     exit
 fi
 
+# Normal Flow of this reconfiguration program/script.
 installExtensions;
 tweakExtensions;
 mkdir "$HOME/.config/reconfiguration";
