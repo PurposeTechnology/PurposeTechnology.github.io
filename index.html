@@ -53,12 +53,11 @@ function tweakExtensions() {
 	
 		# Desktop NG Extension Enhancements
 		if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
-		
-		 # Disable Original Desktop Icons, since Desktop Icons NG is better at Drag N Drop
-		 gnome-extensions disable "desktop-icons@csoriano"
-
 		 declare desktop_icons_ng_schemas="$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas";
 		 gsettings --schemadir "desktop_icons_ng_schemas" set org.gnome.shell.extensions.ding icon-size "small"
+		 
+		 # Disable Original Desktop Icons, since Desktop Icons NG is better at Drag N Drop
+		 gnome-extensions disable "desktop-icons@csoriano"
 		fi
 
 		# Dash to Panel Enhancements
