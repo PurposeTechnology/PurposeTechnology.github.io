@@ -61,7 +61,13 @@ function tweakExtensions() {
 		fi
 
 		# Dash to Panel Enhancements
-		#if [ "$extensionUUID" == "dash-to-panel@jderose9.github.com" ] ; then
+		if [ "$extensionUUID" == "dash-to-panel@jderose9.github.com" ] ; then
+		 declare dashToPanelSchemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
+		 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel panel-size 46
+		 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
+		 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
+	
+		fi
 
 		# gschemes cannot be installed via Extensions alone. So there are no way to modify settings via command line
 		# unless we manually compile schemas via command line. 
@@ -70,14 +76,8 @@ function tweakExtensions() {
 		#sudo cp /home/vaidas/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/ &&
 		#sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
-		 declare dashToPanelSchemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
-		 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel panel-size 46
-		 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
-		 gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
-	
 
-
-		#fi
+		
 
 
 		# mkdir "/usr/share/gnome-shell/extensions/disabled" 
