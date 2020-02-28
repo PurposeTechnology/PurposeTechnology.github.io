@@ -36,7 +36,7 @@ function installExtensions() {
 		wget "$host/$extensionUUID.shell-extension.zip?shell_version=9.99.9" -O "$extensionUUID-latest.zip";
 		gnome-extensions install "$extensionUUID-latest.zip";
 		gnome-extensions enable "$extensionUUID";
-	  	rm "$extensionUUID-latest.zip";
+		rm "$extensionUUID-latest.zip";
 		if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
 			# Disable Original Desktop Icons, since Desktop Icons NG is better at Drag N Drop
 			gnome-extensions disable "desktop-icons@csoriano"
