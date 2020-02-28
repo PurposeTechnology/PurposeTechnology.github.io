@@ -49,16 +49,16 @@ function tweakExtensions() {
 	
 	 # Desktop NG Extension Enhancements
 	 if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
-	 	 declare desktop_icons_ng_schemas="$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas";
-	 	 gsettings --schemadir "desktop_icons_ng_schemas" set org.gnome.shell.extensions.ding icon-size "small"
+	 	declare desktop_icons_ng_schemas="$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas";
+	 	gsettings --schemadir "desktop_icons_ng_schemas" set org.gnome.shell.extensions.ding icon-size "small"
 	 fi
 
 	 # Dash to Panel Enhancements
 	 if [ "$extensionUUID" == "dash-to-panel@jderose9.github.com" ] ; then
-	  declare dashToPanelSchemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
-	  gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel panel-size 46
-	  gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
-	  gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
+	 	declare dashToPanelSchemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
+	 	gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel panel-size 46
+	  	gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
+	 	gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
 
 	 fi
 
