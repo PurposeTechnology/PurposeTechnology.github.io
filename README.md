@@ -21,4 +21,5 @@ Create Shortcut
 
 Generate Link "URL"  
 
-https://medium.com/@waxzce/use-bashrc-d-directory-instead-of-bloated-bashrc-50204d5389ff
+https://unix.stackexchange.com/questions/379181/escape-a-variable-for-use-as-content-of-another-script/458983#458983
+
