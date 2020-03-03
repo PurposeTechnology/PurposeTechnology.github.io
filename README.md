@@ -23,3 +23,5 @@ Generate Link "URL"
 
 https://unix.stackexchange.com/questions/379181/escape-a-variable-for-use-as-content-of-another-script/458983#458983
 
+
+https://stackoverflow.com/questions/2953081/how-can-i-write-a-heredoc-to-a-file-in-bash-script
