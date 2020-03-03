@@ -8,12 +8,12 @@ alias Create=create
 Create, Delete
 
 
-Create
-Create File 
-Create Folder
-Create Link
+Create  
+Create File   
+Create Folder  
+Create Link  
 
-Create Shortcut
+Create Shortcut  
 
-Generate Link "URL"
+Generate Link "URL"  
 
