@@ -13,8 +13,8 @@ Create
 Create File   
 Create File Named
 
-Create Folder 
-Create Folder Named
+Create Folder  
+Create Folder Named  
 
 Create Link  
 Create Shortcut  
