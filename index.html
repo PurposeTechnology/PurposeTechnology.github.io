@@ -22,107 +22,102 @@
 #                                                                              #
 ################################################################################
 
+#!/bin/bash
 
-declare gnomeExtensionsList=(
-	#"dash-to-dock@micxgx.gmail.com" # Dash to Dock
-	"dash-to-panel@jderose9.github.com" # Dash to Panel
-	"ding@rastersoft.com" # Desktop Icons NG - introduces a working Drag N Drop for Desktop Icons 
 
-)
 
-function installExtensions() {
-	declare host="https://extensions.gnome.org/download-extension"
-	for extensionUUID in "${gnomeExtensionsList[@]}"; do
-	
-		wget "$host/$extensionUUID.shell-extension.zip?shell_version=9.99.9" -O "$extensionUUID-latest.zip";
-		gnome-extensions install "$extensionUUID-latest.zip";
-		gnome-extensions enable "$extensionUUID";
-		rm "$extensionUUID-latest.zip";
-		if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
-			# Disable Original Desktop Icons, since Desktop Icons NG is better at Drag N Drop
-			gnome-extensions disable "desktop-icons@csoriano"
-	 	fi
-	done
+
+function check(){
+
+	local argument1=$1;
+	local argument2=$2;
+	if [ "$argument1" == "file" ]; then 
+		if [ -f "$argument1" ]; then
+		  return 0;
+		else
+		  return 1;
+		fi
+	fi
+	if [ "$argument1" == "directory" ]; then 
+		if [ -d "$argument1" ]; then
+		  return 0;
+		else
+		  return 1;
+		fi
+	fi
+
+}
+alias lsd='ls';
+alias ll="ls -lhaG";
+
+
+ll;
+exit
+exists $1 $2;
+echo $? 
+
+
+exit
+
+function create(){
+
+	local argument1=$1;
+	local argument2=$2;
+
+	if [ "$argument1" == "file" ]; then
+		if 
+	   errorOutput=$(command touch "$argument2" 2>&1 1>/dev/null);
+	  
+	fi
+
+	if [ "$argument1" == "folder" ]; then
+	  errrorOutput=$(command mkdir "$argument2" 2>&1 1>/dev/null);
+	  echo asdf $errrorOutput asdf
+	fi
+
 }
 
-function tweakExtensions() {
-	for extensionUUID in "${gnomeExtensionsList[@]}"; do
+create $1 $2;
+
+
+
+exit 
+
+function installExtension(){
+	declare extensionUUID=$1;
+	declare server="https://extensions.gnome.org/download-extension";
+	declare version="?shell_version=9.99.9";
+	declare url="$server/$extensionUUID.shell-extension.zip$version";
+	wget "$url";
+
+	declare download_filename=$(basename "$url");
+	gnome-extensions install "$download_filename";
+	gnome-extensions enable "$download_filename";
+
+	rm "$filename";
 	
-		 # Desktop NG Extension Enhancements
-		 if [ "$extensionUUID" == "ding@rastersoft.com" ] ; then 
-			declare desktop_icons_ng_schemas="$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas";
-			gsettings --schemadir "$desktop_icons_ng_schemas" set org.gnome.shell.extensions.ding icon-size "small"
-		 fi
-
-		 # Dash to Panel Enhancements
-		 if [ "$extensionUUID" == "dash-to-panel@jderose9.github.com" ] ; then
-			declare dashToPanelSchemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
-			gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel panel-size 46
-			gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel appicon-padding 5
-			gsettings --schemadir "$dashToPanelSchemas" set org.gnome.shell.extensions.dash-to-panel window-preview-size 150
-
-		 fi
-
-	done 
 }
 
 
-		# gschemes cannot be installed via Extensions alone. So there are no way to modify settings via command line
-		# unless we manually compile schemas via command line. 
-		# /org/gnome/shell/extensions/dash-to-panel/
-
-		#sudo cp /home/vaidas/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml /usr/share/glib-2.0/schemas/ &&
-		#sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 
-		# mkdir "/usr/share/gnome-shell/extensions/disabled" 
-		# sudo mv /usr/share/gnome-shell/extensions/* "/usr/share/gnome-shell/extensions/disabled"
+# Dash to Dock
+installExtension "dash-to-panel@jderose9.github.com";
+
+declare dash_to_panel_schemas="$HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/schemas"
+gsettings --schemadir "$dash_to_panel_schemas" set org.gnome.shell.extensions.dash-to-panel panel-size 46;
+gsettings --schemadir "$dash_to_panel_schemas" set org.gnome.shell.extensions.dash-to-panel appicon-padding 5;
+gsettings --schemadir "$dash_to_panel_schemas" set org.gnome.shell.extensions.dash-to-panel window-preview-size 150;
+
+# Desktop Icons NG
+installExtension "ding@rastersoft.com";
+
+declare desktop_icons_ng_schemas="$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas";
+gsettings --schemadir "$desktop_icons_ng_schemas" set org.gnome.shell.extensions.ding icon-size "small";
 
 
-function removeExtensions() {
-	for extensionUUID in "${gnomeExtensionsList[@]}"; do
-		gnome-extensions uninstall "$extensionUUID";
-	done
-	cleanupExtensions;
-	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
-}
+create file "reconfigurationHasBeenDoneBefore";
 
-	function cleanupExtensions() {
-		# Dash to Dock Extension
-		# After Dash to Dock is uninstalled, Ubuntu dock is not re-enabled, we have to do that manually
-		gnome-extensions enable "ubuntu-dock@ubuntu.com";
-		
-		# Desktop NG Extension
-		# Re-enable since Desktop Icons NG is being uninstalled
-		gnome-extensions enable "desktop-icons@csoriano";
-
-	}
-
-# This script requires gnome-extensions command line tool 
-# This command line tool is required to install Gnome Extensions 
-# The extensions won't be installed and schemes for these extensions - not found
-declare current_gnome_version=$(gnome-shell --version | cut -d ' ' -f3 | tr "." ",");
-declare gnome_extensions_introduced_in_version="3,34,1";
-if (( current_gnome_version < gnome_extensions_introduced_in-version )); then
-    echo Your Gnome Shell version is incompatible - too old.
-    echo gnome-extensions command line tool has not been introduced yet in your version of Gnome.
-fi
-
-# If the reconfiguration has been done before undo the changes to the system
-if [ -f "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
-	removeExtensions;
-	rm -rf "$HOME/.config/reconfiguration/"
-	exit
-fi
-
-# Normal Flow of this reconfiguration program/script.
-installExtensions;
-tweakExtensions;
-
-	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
-	# Required for Desktop Icons NG to adjust the icons after switch from Ubuntu Dash to Dash to Panel. 
-	#sleep 5;
-	#busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
-	
 mkdir "$HOME/.config/reconfiguration";
-echo $(date) > "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore";
+> "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore";
+
