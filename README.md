@@ -9,10 +9,14 @@ Create, Delete
 
 
 Create  
-Create File   
-Create Folder  
-Create Link  
 
+Create File   
+Create File Named
+
+Create Folder 
+Create Folder Named
+
+Create Link  
 Create Shortcut  
 
 Generate Link "URL"  
