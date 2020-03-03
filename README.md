@@ -27,3 +27,5 @@ https://unix.stackexchange.com/questions/379181/escape-a-variable-for-use-as-con
 
 
 https://stackoverflow.com/questions/2953081/how-can-i-write-a-heredoc-to-a-file-in-bash-script
+
+https://superuser.com/questions/440013/how-to-replace-part-of-a-text-file-between-markers-with-another-text-file/440057#440057
