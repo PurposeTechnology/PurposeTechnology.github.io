@@ -53,7 +53,7 @@ function main(){
 	    exit
 	fi
 
-# --- Undo Changes --------------------------------------------
+# --- Undo Changes and remove extensions --------------------------------------------
 	# If the reconfiguration has been done before undo the changes to the system
 	if [ -f "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
 		# Remove extensions
