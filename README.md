@@ -48,8 +48,8 @@ Enter:
 ### Domain provider notes
 Enable LetsEncrypt Free SSL
 
-Point A record from 
-CNAME @ PurposeTechnology.github.io
+
+ CNAME @ PurposeTechnology.github.io
 
  A @ 185.199.108.153  
  A @ 185.199.109.153  
