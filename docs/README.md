@@ -38,6 +38,9 @@ https://stackoverflow.com/questions/27920806/how-to-avoid-heredoc-expanding-vari
 GET reconfiguration.download/commands_alias.bash
 ```
 
+### CNAME file
+https://help.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages#cname-errors
+
 
 ### Repository Notes
 
