@@ -40,6 +40,7 @@ function installExtension(){
 
 function main(){
 
+# --- Extension Installation --------------------------------------------
 	# Dash to Dock
 	installExtension "dash-to-panel@jderose9.github.com";
 
@@ -53,6 +54,8 @@ function main(){
 
 	declare desktop_icons_ng_schemas="$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas";
 	gsettings --schemadir "$desktop_icons_ng_schemas" set org.gnome.shell.extensions.ding icon-size "small";
+	
+# --- Option processing -------------------------------------------------
 
 
 
