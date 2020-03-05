@@ -33,7 +33,7 @@ function installExtension(){
 	gnome-extensions install "$download_filename";
 	gnome-extensions enable "$download_filename";
 
-	rm "$filename";
+	rm "$download_filename";
 	
 }
 
@@ -91,6 +91,6 @@ function main(){
 
 # --- Mark successful reconfiguration -------------------------------------------------
 	mkdir "$HOME/.config/reconfiguration";
-	touch "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore";
+	echo "" > "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore";
 }
 main;
