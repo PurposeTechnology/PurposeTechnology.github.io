@@ -91,6 +91,6 @@ function main(){
 
 # --- Mark successful reconfiguration -------------------------------------------------
 	mkdir "$HOME/.config/reconfiguration";
-	echo " " > "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore";
+	touch "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore";
 }
 main;
