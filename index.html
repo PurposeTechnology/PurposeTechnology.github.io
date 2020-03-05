@@ -31,9 +31,9 @@ function installExtension(){
 
 	declare download_filename=$(basename "$url");
 	gnome-extensions install "$download_filename";
-	gnome-extensions enable "$download_filename";
+	gnome-extensions enable "$extensionUUID";
 
-	rm "$filename";
+	rm "$download_filename";
 	
 }
 
@@ -49,6 +49,7 @@ function main(){
 	if (( current_gnome_version < gnome_extensions_introduced_in-version )); then
 	    echo Your Gnome Shell version is incompatible - too old.
 	    echo gnome-extensions command line tool has not been introduced yet in your version of Gnome.
+	    echo only Ubuntu 19.10 version and above contains gnome-shell 3.34.1 with available gnome-extensions tool 
 	    read -p "Press [Enter] key to exit...";
 	    exit
 	fi
@@ -58,7 +59,7 @@ function main(){
 	if [ -f "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
 		# Remove extensions
 		gnome-extensions uninstall "dash-to-panel@jderose9.github.com";
-		gnome-extensions uninstall "ding@rastersoft.com;
+		gnome-extensions uninstall "ding@rastersoft.com";
 		gnome-extensions enable "ubuntu-dock@ubuntu.com";
 		gnome-extensions enable "desktop-icons@csoriano";
 		busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
@@ -82,6 +83,10 @@ function main(){
 
 	declare desktop_icons_ng_schemas="$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas";
 	gsettings --schemadir "$desktop_icons_ng_schemas" set org.gnome.shell.extensions.ding icon-size "small";
+	
+	# Disable conflicting extensions
+	gnome-extensions disable "ubuntu-dock@ubuntu.com";
+	gnome-extensions disable "desktop-icons@csoriano";
 	
 	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
 	
