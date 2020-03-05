@@ -45,7 +45,7 @@ function main(){
 	# This command line tool is required to install Gnome Extensions 
 	declare current_gnome_version=$(gnome-shell --version | cut -d ' ' -f3 | tr -d ".");
 	declare gnome_extensions_introduced_in_version="3341";
-	if (( current_gnome_version < gnome_extensions_introduced_in-version )); then
+	if [ "$current_gnome_version" -le "$gnome_extensions_introduced_in_version" ]; then
 	    echo Your Gnome Shell version is too old.
 	    echo gnome-extensions command line tool has not been introduced yet in your version of Gnome.
 	    echo only Ubuntu 19.10 version and above contains gnome-shell 3.34.1 with available gnome-extensions tool 
