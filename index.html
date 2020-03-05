@@ -63,6 +63,8 @@ function main(){
 		gnome-extensions enable "desktop-icons@csoriano";
 		busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
 		
+		# Check if Google Chrome was installed before. Do not remove.
+		
 		rm -rf "$HOME/.config/reconfiguration/"
 		exit
 	fi
@@ -96,6 +98,9 @@ function main(){
 # --- Install Google Chrome Extensions -------------------------------------------------
 # --- Install Drawing application for Gnome by @maoschanzmaoschanz -------------------------------------------------
 # --- Install Fish command-line shell  -------------------------------------------------
+# --- Import and configure Essential commands -------------------------------------------------
+	# Configure $HOME/.bashrc
+	# Add custom commands to $HOME/bin
 
 # --- Mark successful reconfiguration -------------------------------------------------
 	mkdir "$HOME/.config/reconfiguration";
