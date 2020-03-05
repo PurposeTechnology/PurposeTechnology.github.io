@@ -35,5 +35,23 @@ https://stackoverflow.com/questions/27920806/how-to-avoid-heredoc-expanding-vari
 
 ### Repository Notes
 
-Uncheck: Enforce HTTPS 
-Check: Template repository 
+Uncheck: 
+* Enforce HTTPS 
+
+Check: 
+* Template repository 
+
+Enter: 
+* Custom domain: **reconfiguration.download**
+
+
+### Domain provider notes
+Enable LetsEncrypt Free SSL
+
+Point A record from 
+CNAME @ PurposeTechnology.github.io
+
+ A @ 185.199.108.153
+ A @ 185.199.109.153
+ A @ 185.199.110.153
+ A @ 185.199.111.153
