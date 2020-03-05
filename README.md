@@ -31,3 +31,9 @@ https://stackoverflow.com/questions/2953081/how-can-i-write-a-heredoc-to-a-file-
 https://superuser.com/questions/440013/how-to-replace-part-of-a-text-file-between-markers-with-another-text-file/440057#440057
 
 https://stackoverflow.com/questions/27920806/how-to-avoid-heredoc-expanding-variables/27921346#27921346
+
+
+### Repository Notes
+
+Uncheck: Enforce HTTPS 
+Check: Template repository 
