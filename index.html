@@ -57,7 +57,7 @@ function main(){
 # --- Undo Changes and remove extensions --------------------------------------------
 	# If the reconfiguration has been done before undo the changes to the system
 	if [ -f "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
-		# Remove extensions
+		# Remove extensions and restore old ones
 		gnome-extensions uninstall "dash-to-panel@jderose9.github.com";
 		gnome-extensions uninstall "ding@rastersoft.com";
 		gnome-extensions enable "ubuntu-dock@ubuntu.com";
