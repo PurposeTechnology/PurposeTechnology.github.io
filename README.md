@@ -49,10 +49,10 @@ Enter:
 Enable LetsEncrypt Free SSL
 
 ```
- CNAME @ PurposeTechnology.github.io
+CNAME @ PurposeTechnology.github.io
 
- A @ 185.199.108.153  
- A @ 185.199.109.153  
- A @ 185.199.110.153  
- A @ 185.199.111.153  
+A @ 185.199.108.153  
+A @ 185.199.109.153  
+A @ 185.199.110.153  
+A @ 185.199.111.153  
 ```
