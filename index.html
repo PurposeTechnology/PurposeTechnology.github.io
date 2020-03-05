@@ -40,6 +40,14 @@ function installExtension(){
 
 function main(){
 
+# --- Undo Changes --------------------------------------------
+	# If the reconfiguration has been done before undo the changes to the system
+	if [ -f "$HOME/.config/reconfiguration/reconfigurationHasBeenDoneBefore" ]; then
+		removeExtensions;
+		rm -rf "$HOME/.config/reconfiguration/"
+		exit
+	fi
+
 # --- Gnome-Shell Version Check --------------------------------------------
 	# This script requires gnome-extensions command line tool 
 	# This command line tool is required to install Gnome Extensions 
