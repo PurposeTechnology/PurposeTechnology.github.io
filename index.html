@@ -31,7 +31,7 @@ function installExtension(){
 
 	declare download_filename=$(basename "$url");
 	gnome-extensions install "$download_filename";
-	gnome-extensions enable "$download_filename";
+	gnome-extensions enable "$extensionUUID";
 
 	rm "$download_filename";
 	
