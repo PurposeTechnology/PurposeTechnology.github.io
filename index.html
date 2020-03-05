@@ -84,6 +84,9 @@ function main(){
 	declare desktop_icons_ng_schemas="$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com/schemas";
 	gsettings --schemadir "$desktop_icons_ng_schemas" set org.gnome.shell.extensions.ding icon-size "small";
 	
+	
+	gnome-extensions disable "ubuntu-dock@ubuntu.com";
+	gnome-extensions disable "desktop-icons@csoriano";
 	busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
 	
 # --- Option processing -------------------------------------------------
